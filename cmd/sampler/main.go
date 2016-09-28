@@ -18,7 +18,7 @@ func main() {
 }
 
 func printError(msg interface{}) {
-	fmt.Printf("error:\t%s\n", msg)
+	fmt.Fprintf(os.Stderr, "error:\t%s\n", msg)
 }
 
 func _main() int {
