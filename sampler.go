@@ -15,7 +15,7 @@ func init() {
 
 // Iterator iterate values for reservoir sampling
 type Iterator interface {
-	Next() (value interface{}, err error)
+	Next() (value interface{}, err error) // Next should return io.EOF after last value
 }
 
 // IteratorFunc is an adapter function for Iterator
@@ -62,7 +62,7 @@ func New(randSource rand.Source) *Sampler {
 	return &Sampler{rand.New(randSource)}
 }
 
-// Sample returns reservoir sampled values
+// Sample returns reservoir sampled values with defaultSampler
 func Sample(k int, source Iterator) ([]interface{}, error) {
 	return defaultSampler.Sample(k, source)
 }
